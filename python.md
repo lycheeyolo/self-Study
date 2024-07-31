@@ -22,7 +22,7 @@ ans = json.loads(response.content)
 ans = ans['data']
 ```
 
-## matplolib显示中文问题
+## matplotlib显示中文问题
 [参考链接](https://blog.csdn.net/Afison/article/details/134840997)
 ### 主要流程
 1. 下载SimHei.ttf文件，或者从本仓库source目录内下载;
