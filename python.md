@@ -33,7 +33,7 @@ print(matplolib.matplotlib_fname())
 ```
 上面的打印的路径一般是：path/to/python/site-packages/matplotlib/mpl-data/matplotlibrc;
 
-3. 将下载的ttf文件拷贝到目录 path/to/python/site-packages/matplotlib/mpl-data/matplotlibrc/fonts/ttf下;
+3. 将下载的ttf文件拷贝到目录 path/to/python/site-packages/matplotlib/mpl-data/fonts/ttf下;
 
 4. 清除matplolib缓存目录，通过下面代码得到缓存目录位置：
 ``` python
