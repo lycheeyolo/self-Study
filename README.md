@@ -4,6 +4,8 @@
 - ubuntu 通过 apt-get install git-lfs 安装lfs.
 - 
 
+## linux
+- 查看指定id的进程使用：ps -f -p 进程id
 
 # git
 ## 本地代码，在远程新建项目，关联本地代码上传远程
