@@ -42,3 +42,26 @@ master是远程分支
    ```shell
    service ssh restart
    ```
+
+# vllm deploy
+```docker
+version: "0.1"
+
+services:
+  fastapi-server:
+    restart: always
+    image: jcr.ronds.cn/library/ailab/lzy_rondsgpt_stream_server:vllm0.10.2
+    container_name: lzy_rpm_harmonic_server
+    ports:
+      - "5015:8000"
+      - "5014:22"
+    runtime: nvidia
+    volumes:
+      - /rondsai/lab/lizhiyuan/pretrain_models/pretrain_models:/models
+      - /rondsai/wave:/rondsai/wave
+    working_dir: /app
+    command: >
+      bash -c "CUDA_VISIBLE_DEVICES=7 VLLM_CONFIGURE_LOGGING=0 vllm serve /models/Qwen2.5-7B-Instruct --enable-lora --lora-modules rpm=/models/lora_rpm_signalsummary workfrequencyfault=/models/lora_workfrequencyfault --disable-log-stats"
+    tty: true
+    stdin_open: true
+```
