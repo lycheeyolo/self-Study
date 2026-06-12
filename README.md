@@ -65,3 +65,29 @@ services:
     tty: true
     stdin_open: true
 ```
+```
+version: '3.8'
+
+services:
+
+  gpt:
+    restart: always
+    image: jcr.ronds.cn/library/ailab/lzy_rondsgpt_stream_server:vllm0.10.2
+    container_name: lzy_vllm_model_temp
+    ports:
+      - "8680:8000"
+    runtime: nvidia
+    volumes:
+      - /rondsai/lab/lizhiyuan/pretrain_models:/models
+      - /rondsai/wave:/rondsai/wave
+    working_dir: /app
+    command: >
+      bash -c "CUDA_VISIBLE_DEVICES=4 VLLM_CONFIGURE_LOGGING=0 vllm serve /models/Qwen3-8B --gpu-memory-utilization 0.9 --enable-auto-tool-choice --reasoning-parser qwen3  --tool-call-parser hermes --max-model-len 20480 --disable-log-stats"
+    # --reasoning-parser qwen3 加上这个，模型会把思考过程拆分到思考过程字段。不加的话，在content字段中会包含思考工程
+    tty: true
+    stdin_open: true
+
+networks:
+  redis_network:
+    driver: bridge
+```
